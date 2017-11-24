@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace :命名空间需要 接口的全限定名 #{version} 占位符 , version随意些 -->
+<mapper namespace="dao.IFavoritesDao">
+	<!-- 根据userid查询收藏列表,返回结果按时间倒叙排列 -->
+	<select id="favoritesList" parameterType="int" resultType="Favorites">
+		<!-- SELECT * FROM favorites WHERE userid=#{0} ORDER BY DATE desc LIMIT 
+			100 OFFSET #{1} -->
+		SELECT f.id id,userid,movieid,m.title title,m.imgurl imgurl,m.videourl
+		videourl,m.category category,m.adult
+		adult,m.score score,
+		m.comments
+		comments,f.date DATE FROM favorites f LEFT JOIN movie m ON
+		f.movieid=m.id
+		WHERE userid=#{0} ORDER BY DATE desc LIMIT 100 OFFSET
+		#{1}
+	</select>
+	<!-- 根据userid和novelid判断这个用户是否收藏这个小说 -->
+	<select id="getFavoriteById" parameterType="int" resultType="Favorites">
+		SELECT * FROM favorites WHERE userid=#{0} AND movieid=#{1}
+
+	</select>
+
+	<!-- -->
+	<select id="addNewFavorite" parameterType="int">
+		INSERT INTO
+		favorites(userid,movieid,DATE)VALUES(#{0},#{1},NOW());
+	</select>
+	<!-- -->
+	<select id="removeFavorite" parameterType="int">
+		DELETE FROM favorites
+		WHERE userid=#{0} AND movieid=#{1}
+	</select>
+
+	<select id="isInFavorites" parameterType="int" resultType="Favorites">
+		select * from favorites where userid=#{0} and movieid=#{1}
+
+	</select>
+
+
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace :命名空间需要 接口的全限定名 #{version} 占位符 , version随意些 -->
+<mapper namespace="dao.ICategoryDao">
+	<!-- 根据userid查询收藏列表,返回结果按时间倒叙排列 -->
+	<select id="getCategoryList" resultType="Category">
+		SELECT * FROM category  ORDER BY categoryid 
+		
+	</select>
+
+	
+	
+
+</mapper>

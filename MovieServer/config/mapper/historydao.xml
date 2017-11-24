@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace :命名空间需要 接口的全限定名 #{version} 占位符 , version随意些 -->
+<mapper namespace="dao.IHistoryDao">
+	<!-- 根据userid查询收藏列表,返回结果按时间倒叙排列 -->
+	<select id="historyList" parameterType="int" resultType="History">
+		<!-- SELECT * FROM history WHERE userid=#{0} ORDER BY DATE desc LIMIT 100 
+			OFFSET #{1} -->
+		SELECT f.id id,userid,movieid,m.title title,m.imgurl imgurl,m.videourl
+		videourl,m.category category,m.adult
+		adult,m.score score,
+		m.comments
+		comments,f.date DATE FROM history f LEFT JOIN movie m ON
+		f.movieid=m.id
+		WHERE userid=#{0} ORDER BY DATE desc LIMIT 100 OFFSET
+		#{1}
+	</select>
+
+	<!-- -->
+	<select id="addNewHistory" parameterType="int">
+		INSERT INTO
+		history(userid,movieid,DATE)VALUES(#{0},#{1},NOW());
+	</select>
+	<!-- -->
+	<select id="removeAllHistory" parameterType="int">
+		DELETE FROM history
+		WHERE userid=#{id}
+	</select>
+
+
+</mapper>

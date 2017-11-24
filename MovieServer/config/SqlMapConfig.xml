@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<package name="bean" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url"
+					value="jdbc:mysql:///movie?characterEncoding=utf-8" />
+				<property name="username" value="root" />
+				<property name="password" value="rzxy1903" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+
+		<mapper resource="mapper/registerdao.xml" />
+		<mapper resource="mapper/logindao.xml" />
+		<mapper resource="mapper/homelistdao.xml" />
+		<mapper resource="mapper/searchdao.xml" />
+		<mapper resource="mapper/hotkeyworddao.xml" />
+		<mapper resource="mapper/favoritedao.xml" />
+		<mapper resource="mapper/historydao.xml" />
+		<mapper resource="mapper/commentdao.xml" />
+		<mapper resource="mapper/categorydao.xml"/>
+		
+
+
+	</mappers>
+
+</configuration>
